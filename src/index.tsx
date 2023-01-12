@@ -8,13 +8,15 @@ const App = () => {
   const ref = useRef<any>();
   const [input, setInput] = useState<string>("");
   const [code, setCode] = useState<string>("");
+
   useEffect(() => {
     startService();
   }, []);
+
   const startService = async () => {
     ref.current = await esbuild.startService({
       worker: true,
-      wasmURL: "/esbuild.wasm",
+      wasmURL: "https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm",
     });
   };
 
