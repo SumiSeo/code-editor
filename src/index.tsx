@@ -25,6 +25,8 @@ const App = () => {
     if (!ref.current) {
       return;
     }
+    iframe.current.srcdoc = html;
+
     console.log(ref.current);
 
     const result = await ref.current.build({
