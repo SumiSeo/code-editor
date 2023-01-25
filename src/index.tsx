@@ -8,7 +8,6 @@ const App = () => {
   const ref = useRef<any>();
   const iframe = useRef<any>();
   const [input, setInput] = useState<string>("");
-  const [code, setCode] = useState<string>("");
 
   useEffect(() => {
     startService();
@@ -40,7 +39,6 @@ const App = () => {
       },
     });
 
-    // setCode(result.outputFiles[0].text);
     iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
   };
 
@@ -73,8 +71,12 @@ const App = () => {
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
-      <iframe ref={iframe} sandbox="allow-scripts" srcDoc={html}></iframe>
+      <iframe
+        title="preview"
+        ref={iframe}
+        sandbox="allow-scripts"
+        srcDoc={html}
+      ></iframe>
     </div>
   );
 };
