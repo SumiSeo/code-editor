@@ -1,8 +1,23 @@
 import MonacoEditor from "@monaco-editor/react";
+interface CodeEditorProps {
+  initialValue: string;
+  onChange: (value: string) => void;
+}
 
-const CodeEditor = () => {
+const CodeEditor = ({
+  initialValue,
+  onChange,
+}: CodeEditorProps): JSX.Element => {
+  const onEditorDidMount = (getValue: () => string, MonacoEditor: any) => {
+    MonacoEditor.onDidChangeModelContent(() => {
+      onChange(getValue());
+    });
+  };
+
   return (
     <MonacoEditor
+      editorDidMount={onEditorDidMount}
+      value={initialValue}
       options={{
         wordWrap: "on",
         minimap: {
