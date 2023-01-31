@@ -25,13 +25,15 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
     console.log(editorRef.current.getModel());
 
     //format
-    const formatted = prettier.format(unformatted, {
-      parser: "babel",
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: false,
-    });
+    const formatted = prettier
+      .format(unformatted, {
+        parser: "babel",
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: false,
+      })
+      .replace(/\n$/, "");
 
     //set the formatte value back in the editor
     editorRef.current.setValue(formatted);
