@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
+import "./text-editor.css";
 
 const TextEditor: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -25,7 +26,7 @@ const TextEditor: React.FC = () => {
 
   if (editing) {
     return (
-      <div ref={ref}>
+      <div className="text-editor" ref={ref}>
         <MDEditor />
       </div>
     );
