@@ -4,6 +4,9 @@ import "./text-editor.css";
 
 const TextEditor: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [editing, setEditing] = useState<boolean>(false);
+  const [value, setValue] = useState<string>("# Header");
+
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (
@@ -22,19 +25,20 @@ const TextEditor: React.FC = () => {
       document.removeEventListener("click", listener, { capture: true });
     };
   }, []);
-  const [editing, setEditing] = useState<boolean>(false);
 
   if (editing) {
     return (
       <div className="text-editor" ref={ref}>
-        <MDEditor />
+        <MDEditor value={value} onChange={(v) => setValue(v || "")} />
       </div>
     );
   }
 
   return (
-    <div onClick={() => setEditing(true)}>
-      <MDEditor.Markdown source={"# Header"} />
+    <div className="text-editor card" onClick={() => setEditing(true)}>
+      <div className="card-content">
+        <MDEditor.Markdown source={value} />
+      </div>
     </div>
   );
 };
