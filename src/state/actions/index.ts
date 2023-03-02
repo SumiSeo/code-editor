@@ -1,4 +1,5 @@
 import { ActionType } from "../action-types";
+import { Cell, CellTypes } from "../cell";
 
 interface MoveCellAction {
   type: ActionType.MOVE_CELL;
