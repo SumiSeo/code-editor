@@ -28,3 +28,9 @@ interface UpdateCellAction {
     content: string;
   };
 }
+
+export type Action =
+  | MoveCellAction
+  | DeleteCellAction
+  | InsertCellBeforeAction
+  | UpdateCellAction;
