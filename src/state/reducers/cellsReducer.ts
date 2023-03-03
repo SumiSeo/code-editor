@@ -24,13 +24,14 @@ const cellsReducer = (
 ): CellsState => {
   switch (action.type) {
     case ActionType.UPDATE_CELL:
+      const { id, content } = action.payload;
       return {
         ...state,
         data: {
           ...state.data,
-          [action.payload.id]: {
-            ...state.data[action.payload.id],
-            content: action.payload.content,
+          [id]: {
+            ...state.data[id],
+            content,
           },
         },
       };
